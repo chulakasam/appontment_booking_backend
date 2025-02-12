@@ -31,3 +31,14 @@ export async function GetAllAppointment() {
     }
 }
 
+export async function CancelAppointment(appointmentId:string){
+    try {
+        const deletedAppointment=await prisma.appointment.delete({
+            where:{id:appointmentId}
+        });
+        console.log('delete appointment successfully',deletedAppointment);
+        return deletedAppointment;
+    }catch (error){
+        console.log('error deleting appointment',error);
+    }
+}

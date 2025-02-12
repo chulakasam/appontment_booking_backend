@@ -1,5 +1,5 @@
 import express from "express";
-import {AddAppointment, GetAllAppointment} from "../database/prisma-appointment-data-store";
+import {AddAppointment, CancelAppointment, GetAllAppointment} from "../database/prisma-appointment-data-store";
 
 const router = express.Router();
 
@@ -24,5 +24,14 @@ router.get('/', async (req, res) => {
     }
 });
 
+router.delete('/:id',async (req, res) => {
+    try{
+        const appointmentId = req.params.id;
+        const cancel_appointment = await CancelAppointment(appointmentId);
+        res.json(cancel_appointment);
+    }catch (error) {
+        console.log('error deleting appointment',error);
+    }
+})
 
 export default router;

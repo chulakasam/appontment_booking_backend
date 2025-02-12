@@ -1,4 +1,5 @@
 import express from 'express';
+
 import appointmentRoutes from "./routes/appointment-routes";
 
 const app = express();
@@ -11,7 +12,7 @@ app.use('/',(req,res,next)=>{
 
    next();
 });
-app.use('/appointment',appointmentRoutes);
+app.use('/appointments',appointmentRoutes);
 
 
 app.listen('5000',()=>{

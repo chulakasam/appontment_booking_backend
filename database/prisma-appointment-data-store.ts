@@ -19,3 +19,15 @@ export async function AddAppointment(adding_appointment:Appointment){
         console.log("error adding appointment",error);
     }
 }
+
+export async function GetAllAppointment() {
+    try {
+        const appointment_details = await prisma.appointment.findMany();
+        console.log('Fetched Data:', appointment_details);
+        return appointment_details;
+    } catch (error) {
+        console.error('Error fetching appointments:', error);
+        throw error;
+    }
+}
+
